@@ -1,0 +1,53 @@
+body {
+  background: #1e2440;
+  color: #f2efe2;
+  font-size: 16px;
+  font-family: 'Kaushan Script', cursive;
+  font-family: 'Shadows Into Light', cursive;
+}
+.container {
+  position: relative;
+  border: 1px solid #f2efe2;
+  width: 40vw;
+  max-width: 60vw;
+  margin: 0 auto;
+  border-radius: 0.1rem;
+  background: #f2efe2;
+  padding: 0.2rem 1rem;
+  color: #1e2440;
+  overflow: scroll;
+  margin-top: 10vh;
+}
+.text-box {
+  max-height: 70vh;
+  overflow: scroll;
+}
+.text-box:focus {
+  outline: none;
+}
+.text-box p {
+  border-bottom: 1px dotted black;
+  margin: 0px !important;
+}
+.fa {
+  color: white;
+  background: #1e2440;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 1rem;
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .container {
+    width: 85vw;
+    max-width: 85vw;
+  }
+.text-box {
+    max-height: 55vh;
+  }
+}

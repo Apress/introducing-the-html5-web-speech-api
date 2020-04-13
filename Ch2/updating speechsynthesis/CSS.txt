@@ -1,0 +1,96 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+#page-wrapper {
+  width: 640px;
+  background: #ffffff;
+  padding: 16px;
+  margin: 32px auto;
+  border-top: 5px solid #9d9d9d;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+#msg {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+#msg.not-supported strong {
+  color: #cc0000;
+}
+
+#msg > span {
+  font-size: 24px;
+  vertical-align: bottom;
+}
+
+#msg > span.ok {
+  color: #00ff00;
+}
+
+#msg > span.notok {
+  color: #ff0000;
+}
+
+#voice {
+  /*margin-left: -70px;*/
+  margin-right: 70px;
+  vertical-align: super;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 19px;
+  border-radius: 3px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1) inset;
+}
+
+input[type="range"] { width: 300px; }
+
+label {
+  display: inline-block;
+  float: left;
+  width: 150px;
+}
+
+.option {
+  margin: 16px 0;
+}
+
+button {
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: #dcdcdc;
+  border-bottom: 2px solid #9d9d9d;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  margin: 0;
+  width: 20%;
+  text-align: center;
+}
+
+button:hover, button:focus {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 1;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
+}

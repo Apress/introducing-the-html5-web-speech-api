@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cookies to Go | Introducing HTML5 Speech API</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Caveat|Open+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="wrapper">
+    <div id="header">	
+    	<ul>
+        <li><a href="">Cookies to Go</a></li>
+        <li>The home of great cookies</li>
+        <li><a href="">About Us</a></li>
+        <li><a href="">Contact</a></li>                                              
+      </ul>		
+    </div>
+
+    <div id="sidebar">
+      <div class="cart-icon-top"></div>
+      <div class="cart-icon-bottom"></div>
+    	<h3>CART</h3>
+      <div id="checkout">
+        <i class="fa fa-microphone"></i>Checkout securely
+      </div>      
+      <div id="cart"></div>
+
+      <div id="carttotal">
+        <span class="count">No items in basket</span>
+        <span class="subtotal">0.00</span>
+      </div>
+
+      <button id="microphone">
+        <i class="fa fa-microphone"></i> Click and talk to me!
+      </button>
+      <div class="response">
+        <span class="output_log"></span>
+      </div>
+
+      <span class="output">You said: <strong class="output_result"></strong></span>
+      <span class="voice">Spoken voice: US English</span>
+    </div>    
+
+    <div id="grid">
+      <div class="product">
+        <div class="make3D">
+          <div class="product-front">
+            <img src="img/cbakewell.png" alt="" />
+            <div class="image_overlay"></div>
+            <div class="add_to_cart" data-product="cherry bakewell">Add to cart</div>             
+            <span class="product_name">Cherry Bakewell</span>
+            <span class="product_price">$0.50</span>
+            <span class="speechterm"><i class="fa fa-microphone"></i>"Add a cherry"</span>
+          </div>
+        </div>	
+      </div>
+
+      <div class="product">
+        <div class="make3D">
+          <div class="product-front">
+            <img src="img/dark-choc.png" alt="" />
+            <div class="image_overlay"></div>
+            <div class="add_to_cart" data-product="dark chocolate">Add to cart</div>
+            
+            <span class="product_name">Dark Chocolate</span>
+            <span class="product_price">$0.50</span>
+            <span class="speechterm"><i class="fa fa-microphone"></i>"Add a dark"</span>
+          </div>
+        </div>  
+      </div>
+
+      <div class="product">
+        <div class="make3D">
+          <div class="product-front">
+            <img src="img/rasberry-white-choc.png" alt="" />
+            <div class="image_overlay"></div>
+            <div class="add_to_cart" data-product="raspberry">Add to cart</div>              
+            <span class="product_name">Raspberry & White Chocolate</span>
+            <span class="product_price">$0.50</span>
+            <span class="speechterm"><i class="fa fa-microphone"></i>"Add a raspberry"</span>            
+          </div>
+        </div>  
+      </div>
+
+      <div class="product">
+        <div class="make3D">
+          <div class="product-front">
+            <img src="img/toffee.png" alt="" />
+            <div class="image_overlay"></div>
+            <div class="add_to_cart" data-product="toffee">Add to cart</div>              
+            
+            <span class="product_name">Toffee</span>                              
+            <span class="product_price">$0.50</span>
+            <span class="speechterm"><i class="fa fa-microphone"></i>"Add a toffee"</span>
+          </div>
+        </div>  
+      </div>
+      <!-- end of gallery -->
+
+
+      <!-- credit card checkout -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.payment.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

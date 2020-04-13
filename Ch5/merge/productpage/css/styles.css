@@ -1,0 +1,239 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#container {
+	border: 1px solid #000000; 
+  border-bottom: none;  
+  min-height: 100px;
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  height: 200px;
+  background: url("../img/header.jpg") no-repeat center center;
+  display: block;
+}
+
+header div {
+  width: 400px;
+  background-color: rgb(0,0,0,0.4);
+  margin-left: 50%;
+  margin-top: 3%;
+  height: 130px;
+  padding: 20px;
+  color: #ffffff;
+}
+
+
+header div span {
+  font-size: 42px;
+  border-bottom: 1px solid #c1c1c1;
+  display: block;
+}
+
+header div p {
+  margin-top: 3px;
+  letter-spacing: 1.2px;
+  font-size: 14px;
+  float: right;
+}
+
+header div img {
+  width: 45px;
+  float: right;
+  margin-top: -65px;  
+}
+
+nav {
+  width: 100%;
+  height: 55px;
+  background-image: linear-gradient(360deg, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 100%);
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: initial;
+  padding: 16px;
+  background-color: silver;
+  margin: 0;
+  margin-right: -2px;
+}
+
+nav ul li a {
+  font-weight: bold;
+  color: #000000;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+#content {
+  width: 100%;
+  padding: 15px;
+}
+
+#hero {
+  width: 40%;
+  display: inline-block;
+  text-align: center;
+}
+
+#hero img {
+  width: 340px;
+  height: auto;
+}
+
+#description {
+  width: 59.5%;
+  display: inline-block;
+  padding: 30px 15px;
+  margin-bottom: 15px;
+  background-color: #fffccc;
+}
+
+#description input {
+  width: 50px;
+}
+
+#description h2 {
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  display: inline-block;
+}
+
+#description > img {
+  vertical-align: bottom;
+}
+
+#main {
+  border-top: 1px solid #d7d7d7;
+  padding-top: 15px;
+  width: 100%;  
+}
+
+footer {
+  width: 1024px;  
+  padding: 20px;
+  background: linear-gradient(360deg, #594c59 0%, #343334 100%);
+  border: 1px solid #000000;
+  border-bottom: none;
+  height: 100px;
+  margin: 0px auto 50px auto;
+  color: #ffffff;
+}
+
+span.stock {
+	padding: 10px 5px;
+  background-color: #00ff00;
+  margin-right: 20px;
+}
+
+/* stock number */
+#description > span:nth-child(4) {
+  font-weight: bold;
+}
+
+.price {
+  width: 150px;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  float: right;
+}
+
+/*********************/
+/* Tabs              */
+/*********************/
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  width: 95%;  
+  margin-left: 20px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  margin-top: 0px;
+  color: #000000;
+  font-size: 18px;
+  border: 1px solid #c1c1c1;
+  background-color: #f1f1f1;
+  border-radius: 0px;
+  margin-bottom: -1px;  
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+  border-bottom: none;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  width: 95%;  
+  margin-left: 20px;
+}
+
+/*****************/
+/* Add to Cart   */
+/*****************/
+
+button {
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: #ff0000;
+  border-bottom: 2px solid #b30000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  margin: 0;
+  width: 30%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+button:hover, button:focus {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 1;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
+}
+
+button:disabled, select:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+

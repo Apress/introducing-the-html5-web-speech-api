@@ -1,0 +1,120 @@
+"use strict";
+
+var supportMsg = document.getElementById('msg');
+var voiceSelect = document.getElementById('voice');
+var result = document.getElementById("result");
+const log = document.querySelector(".output_log");
+const output = document.querySelector(".output_result");
+
+var DKTime;
+
+//Check for browser support
+if ('speechSynthesis' in window) {
+  supportMsg.innerHTML = '<span class="ok">&#x2611;</span> Your browser <strong>supports</strong> speech synthesis.';
+} else {
+  supportMsg.innerHTML = '<span class="notok">&#x2612;</span> Sorry your browser <strong>does not support</strong> speech synthesis.';
+  supportMsg.classList.add('not-supported');
+}
+
+function loadVoices() {
+  var voices = window.speechSynthesis.getVoices();
+  
+  voices.forEach(function(voice, i) {
+    var option = document.createElement('option');
+    option.value = voice.name;
+    option.innerHTML = voice.name;
+    voiceSelect.appendChild(option);
+  });
+}
+
+loadVoices();
+
+// Chrome loads voices asynchronously.
+window.speechSynthesis.onvoiceschanged = function(e) {
+  loadVoices();
+};
+
+window.speechSynthesis.onerror = function(event) {
+  console.log('Speech recognition error detected: ' + event.error);
+  console.log('Additional information: ' + event.message);
+}
+
+function speak(text) {
+  var msg = new SpeechSynthesisUtterance();
+  msg.text = text;
+    
+  if (voiceSelect.value) {
+    msg.voice = speechSynthesis.getVoices().filter(function(voice) { 
+      return voice.name == voiceSelect.value; 
+    })[0];
+  }
+  
+  speechSynthesis.speak(msg);
+}
+
+/** SPEECH RECOGNITION  **/
+function getTime(){
+  var local = luxon.DateTime.local();
+  var dktime = local.setZone("Europe/Copenhagen");
+  DKTime = "The time in Copenhagen is " + dktime.toLocaleString(luxon.DateTime.TIME_SIMPLE);
+  result.innerHTML = DKTime;
+}
+
+navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  recognition.continuous = true;
+
+  document.querySelector("#findtime").addEventListener("click", () => {
+    let recogLang = "en-GB";
+    recognition.lang = recogLang.value;
+    recognition.start();
+  });
+
+  recognition.addEventListener("speechstart", () => {
+    log.textContent = "Speech has been detected.";
+  });
+
+  recognition.addEventListener("result", (e) => {
+    log.textContent = "Result has been detected.";
+
+    let last = e.results.length - 1;
+    let text = e.results[last][0].transcript;
+
+    output.textContent = text;
+
+    var city = text.split(" ").pop();
+ 
+    if (city == "Copenhagen") {
+      console.log("City is " + city);
+      getTime();
+      speak(DKTime);
+    }
+    
+    log.textContent =
+      "Confidence: " + (e.results[0][0].confidence * 100).toFixed(2) + "%";
+  });
+
+  recognition.addEventListener("speechend", () => {
+    recognition.stop();
+  });
+
+  recognition.onspeechend = function() {
+    log.textContent = 'You were quiet for a while so voice recognition turned itself off.';
+    stream.getTracks().forEach(function(track) { track.stop() });
+    console.log("off");
+  }
+
+  recognition.addEventListener("error", e => {
+    if (e.error == "no-speech") {
+      output.textContent = "Error: no speech detected";  
+    } else {
+      output.textContent = "Error: " + e.error;  
+    }
+  });
+}).catch(function(err) {
+  console.log(err);
+});

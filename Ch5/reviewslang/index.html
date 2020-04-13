@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Introducing HTML5 Speech API: Leaving Feedback</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="page-wrapper">
+    <h1>Introducing HTML5 Speech API: Leaving Feedback</h1>
+    <div id="reviews"></div>
+    <div id="unsupported" class="support hidden">Speech API Not Supported</div>
+    <h2>Add Your Review:</h2>
+    <div id="typeOfInput"><span>Results:</span>
+      <input type=radio name=recognition-type value=final id="final">
+      <label for id="final">Final speech</label>
+      <input type=radio name=recognition-type value=interim checked id="interim"></label>
+      <label for id="interim">As you speak</label>
+    </div>
+    <textarea id="transcript" readonly></textarea>
+    <div class="button-wrapper">
+      <div id="speechButton" class="start"></div>
+    </div>
+    <section class="flags">
+      <span class="intro">Choose language:</span>
+      <span class="en-us"><img src="img/en-us.png" alt="en-us">EN</span>|
+      <span class="fr-fr"><img src="img/fr-fr.png" alt="fr-fr">FR</span>
+    </section>
+    <div id="buttons">
+      <button id="clearall-btn" class="button">Clear Text</button>
+      <button id="submit-btn" class="button">Submit Review</button>
+    </div>
+    <div id="log">Click the microphone to start speaking</div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.16/dayjs.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

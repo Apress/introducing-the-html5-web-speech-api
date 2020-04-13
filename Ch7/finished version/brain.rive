@@ -1,0 +1,53 @@
+! version = 2.0
+
+> object foodtype javascript
+    var newFood
+    for (var i = 0; i < args.length; i++) {
+      newFood = args[i]
+    }
+
+    if (newFood == "local") { newFood = "Czech" }
+
+    newFood = newFood.charAt(0).toUpperCase() + newFood.slice(1)
+    sessionStorage.setItem("cuisine", newFood)
+
+    return "Do you have a price range in mind - budget, midrange, or expensive?"
+< object 
+
+> object rating javascript
+    var priceRange
+    for (var i = 0; i < args.length; i++) {
+      priceRange = args[i]
+    }
+
+    if (priceRange == "budget") { priceRange = 1}
+    if (priceRange == "midrange") { priceRange = 2}
+    if (priceRange == "highend") { priceRange = 3}
+    sessionStorage.setItem("priceRange", priceRange)
+
+    return "Ok let us see what I can find..."
+< object 
+
+> object restCount javascript
+    return sessionStorage.getItem("restCountValue")
+< object 
+
+
++ search restaurants
+- Ok. Searching for a restaurant - what cuisine would you like? Indian, Italian or something else?
+
++ i would prefer (chinese|indian|local|mexican) please
+- <call>foodtype <star></call>
+
++ (budget|midrange|expensive)
+- <call>rating <star></call>
+^ I have found a selection of restaurants for you! Would you like to see the restaurants I've found?
+
++ yes please
+- No problem, here is the <call>restCount</call> I've found:
+
++ *
+- Sorry, I did not get what you said
+- I am afraid that I do not understand you
+- I did not get it
+- Sorry, can you please elaborate that for me?

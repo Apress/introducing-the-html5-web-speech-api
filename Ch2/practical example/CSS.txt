@@ -1,0 +1,55 @@
+*, *:before, *:after { box-sizing: border-box; }
+
+html { 
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 100%; 
+}
+
+#page-wrapper { 
+  width: 640px; 
+  background: #ffffff; 
+  padding: 16px; 
+  margin: 32px auto; 
+  border-top: 5px solid #9d9d9d; 
+  box-shadow: 0 1px 5px rgba(0,0,0,0.6); 
+}
+
+h2 { 
+  margin-top: 0; 
+}
+
+button {
+  color: #0000000;
+  background: #dcdcdc;
+  border-radius: 6px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 19px;
+  padding: 8px 16px;
+  margin-top: 10px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+span.output_log {
+  display: block;
+  width: 100%;
+  background-color: rgb(228, 228, 228);
+  padding: 5px;
+  height: 30px;
+  list-style: 30px;
+}
+
+.fa-microphone:before {
+    content: "\f130";
+}
+
+.output {
+  width: 370px;
+  float: left;
+}
+
+#video_file {
+  width: 370px;
+}

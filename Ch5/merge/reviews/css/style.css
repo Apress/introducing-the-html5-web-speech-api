@@ -1,0 +1,149 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+h1 {
+  margin-top: 0;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: 50px;
+}
+
+p {
+  text-align: left;
+}
+
+button {
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: #dcdcdc;
+  border-bottom: 2px solid #9d9d9d;
+  color: #000000;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+button:hover, button:focus {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 1;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.support {
+  display: block;
+  font-weight: 600;
+  font-size: 48px;
+  color: #58485f;
+  letter-spacing: -2.5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.start {
+  background: #63c4c0
+}
+
+.stop {
+  background: #c73970;
+}
+
+.button-wrapper {
+  width: 100px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#page-wrapper {
+  width: 780px;
+  background: #ffffff;
+  padding: 16px;
+  margin: 32px auto;
+  border-top: 5px solid #9d9d9d;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+#typeOfInput {
+  margin-bottom: 10px;
+}
+
+#speechButton {
+  margin: 10px auto;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url(../img/mic.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#speechButton:hover {
+  cursor: pointer;
+}
+
+#transcript {
+  display: inline-block;
+  resize: none;
+  width: 85%;
+  height: 80px;
+  font-size: 16px;
+  overflow-y: scroll;
+  color: #333333;
+  border: 1px solid #d7d7d7;
+  line-height: 20.8px;
+  border-radius: 4px;
+  vertical-align: super;
+}
+
+#buttons {
+  text-align: right;
+}
+
+/* styles applied dynamically */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #d7d7d7;
+  margin: 16px 0;
+  padding: 0;
+}
+
+small {
+  font-weight: 600;
+  color: #58485f;
+  text-align: right;
+  display: block;
+}

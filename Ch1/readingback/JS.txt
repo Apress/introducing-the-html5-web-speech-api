@@ -1,0 +1,51 @@
+var supportMsg = document.getElementById('msg');
+
+var speechSynthesis = window.SpeechSynthesis || window.webkitSpeechSynthesis;
+
+if ('speechSynthesis' in window) {
+  supportMsg.innerHTML = '<span class="ok">&#x2611;</span> Your browser <strong>supports</strong> speech synthesis.';
+} else {
+  supportMsg.innerHTML = '<span class="notok">&#x2612;</span> Sorry your browser <strong>does not support</strong> speech synthesis.';
+  supportMsg.classList.add('not-supported');
+}
+
+var speechMsgInput = document.getElementById('speech-msg');
+var voiceSelect = document.getElementById('voice');
+var button = document.getElementById('speak');
+
+function loadVoices() {
+  var voices = speechSynthesis.getVoices();
+  
+  voices.forEach(function(voice, i) {
+    var option = document.createElement('option');
+    option.value = voice.name;
+    option.innerHTML = voice.name;
+    voiceSelect.appendChild(option);
+  });
+}
+
+loadVoices();
+
+// Chrome loads voices asynchronously.
+window.speechSynthesis.onvoiceschanged = function(e) {
+  loadVoices();
+};
+
+function speak(text) {
+  var msg = new window.SpeechSynthesisUtterance();
+  msg.text = text;
+  
+  if (voiceSelect.value) {
+    msg.voice = speechSynthesis.getVoices().filter(function(voice) { 
+      return voice.name == voiceSelect.value; 
+    })[0];
+  }
+  
+  window.speechSynthesis.speak(msg);
+}
+
+button.addEventListener('click', function(e) {
+  if (speechMsgInput.value.length > 0) {
+    speak(speechMsgInput.value);
+  }
+});

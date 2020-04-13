@@ -1,0 +1,23 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+<div id="page-wrapper">
+  <h3>Introducing HTML5 Speech API: Reading Text back as Speech</h3>
+  <p id="msg"></p>
+	<div class="option">
+		<label for="voice">Voice</label>
+		<select name="voice" id="voice"></select>
+  </div>
+  
+  <!-- SPEECH RECOGNITION -->
+  <button id="findtime">
+    <i class="fa fa-microphone"></i> Click and talk to me!
+  </button>
+  <div class="response">
+    <span class="output_log"></span>
+  </div>
+
+  <div id="result"></div>
+  
+  <p class="output">You said: <br><strong class="output_result"></strong></p>
+  <span class="voice">Spoken voice: US English</span>
+</div>

@@ -1,0 +1,57 @@
+"use strict";
+
+const log = document.querySelector(".output_log");
+const output = document.querySelector(".output_result");
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+recognition.interimResults = true;
+recognition.maxAlternatives = 1;
+recognition.continuous = true;
+
+document.getElementById("micoff").addEventListener("click", () => {
+  stream.getTracks().forEach(function(track) { track.stop() });
+  console.log("off");
+});
+
+document.querySelector("button").addEventListener("click", () => {
+  let recogLang = "en-US";
+  recognition.lang = recogLang.value;
+  recognition.start();
+});
+
+recognition.addEventListener("speechstart", () => {
+  log.textContent = "Speech has been detected.";
+});
+
+recognition.addEventListener("result", (e) => {
+  log.textContent = "Result has been detected.";
+
+  let last = e.results.length - 1;
+  let text = e.results[last][0].transcript;
+
+  output.textContent = text;
+
+  log.textContent =
+    "Confidence: " + (e.results[0][0].confidence * 100).toFixed(2) + "%";
+});
+
+recognition.addEventListener("speechend", () => {
+  recognition.stop();
+});
+
+recognition.onspeechend = function() {
+  log.textContent = 'You were quiet for a while so voice recognition turned itself off.';
+  stream.getTracks().forEach(function(track) { track.stop() });
+  console.log("off");
+}
+
+recognition.addEventListener("error", e => {
+  if (e.error == "no-speech") {
+    output.textContent = "Error: no speech detected";  
+  } else {
+    output.textContent = "Error: " + e.error;  
+  }
+});
+

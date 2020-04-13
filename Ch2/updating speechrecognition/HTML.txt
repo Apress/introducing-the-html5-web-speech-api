@@ -1,0 +1,16 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">  
+
+<div id="page-wrapper">
+  <h2>Introducing HTML5 Speech API: Converting Speech to Text</h2>
+  
+  <button>
+    <i class="fa fa-microphone"></i> Click and talk to me!
+  </button>
+  <div class="response">
+    <span class="output_log"></span>
+  </div>
+
+  <p class="output">You said: <strong class="output_result"></strong></p>
+  <button id="micoff">Turn off</button>
+  <span class="voice">Spoken voice: US English</span>
+</div> 

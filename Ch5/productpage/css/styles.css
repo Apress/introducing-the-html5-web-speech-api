@@ -1,0 +1,355 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+header {
+  width: 100%;
+  height: 200px;
+  background: url("../img/header.jpg") no-repeat center center;
+  display: block;
+}
+
+header div {
+  width: 400px;
+  background-color: rgb(0,0,0,0.4);
+  margin-left: 50%;
+  margin-top: 3%;
+  height: 130px;
+  padding: 20px;
+  color: #ffffff;
+}
+
+header div span {
+  font-size: 42px;
+  border-bottom: 1px solid #c1c1c1;
+  display: block;
+}
+
+header div p {
+  margin-top: 3px;
+  letter-spacing: 1.2px;
+  font-size: 14px;
+  float: right;
+}
+
+header div img {
+  width: 45px;
+  float: right;
+  margin-top: -65px;  
+}
+
+nav {
+  width: 100%;
+  height: 55px;
+  background-image: linear-gradient(360deg, rgb(240, 240, 240) 0%, rgb(255, 255, 255) 100%);
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: initial;
+  padding: 16px;
+  background-color: silver;
+  margin: 0;
+  margin-right: -2px;
+}
+
+nav ul li a {
+  font-weight: bold;
+  color: #000000;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+footer {
+  width: 1024px;  
+  padding: 20px;
+  background: linear-gradient(360deg, #594c59 0%, #343334 100%);
+  border: 1px solid #000000;
+  border-bottom: none;
+  height: 100px;
+  margin: 0px auto 50px auto;
+  color: #ffffff;
+}
+
+span.stock {
+  padding: 10px 5px;
+  background-color: #00ff00;
+  margin-right: 20px;
+}
+
+.price {
+  width: 150px;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  float: right;
+}
+
+#container {
+  border: 1px solid #000000; 
+  border-bottom: none;  
+  min-height: 100px;
+  width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  width: 100%;
+  padding: 15px;
+}
+
+#hero {
+  width: 40%;
+  display: inline-block;
+  text-align: center;
+}
+
+#hero img {
+  width: 340px;
+  height: auto;
+}
+
+#description {
+  width: 59.5%;
+  display: inline-block;
+  padding: 30px 15px;
+  margin-bottom: 15px;
+  background-color: #fffccc;
+}
+
+/* stock number */
+#description .stockid {
+  font-weight: bold;
+}
+
+#description input {
+  width: 50px;
+}
+
+#description h2 {
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  display: inline-block;
+}
+
+#description > img {
+  vertical-align: bottom;
+}
+
+#main {
+  border-top: 1px solid #d7d7d7;
+  padding-top: 15px;
+  width: 100%;  
+}
+
+/*********************/
+/* Tabs              */
+/*********************/
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  width: 95%;  
+  margin-left: 20px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  margin-top: 0px;
+  color: #000000;
+  font-size: 18px;
+  border: 1px solid #c1c1c1;
+  background-color: #f1f1f1;
+  border-radius: 0px;
+  margin-bottom: -1px;  
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+  border-bottom: none;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  width: 95%;  
+  margin-left: 20px;
+}
+
+/*****************/
+/* Add to Cart   */
+/*****************/
+
+button {
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  padding: 8px 12px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  margin: 0;
+  width: 30%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#addtocart {
+  background: #ff0000;
+  border-bottom: 2px solid #b30000;
+  color: #ffffff;
+}
+
+#submit-btn, #clearall-btn {
+  background: #dcdcdc;
+  border-bottom: 2px solid #9d9d9d;
+  color: #000000;
+}
+
+button:hover, button:focus {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 1;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
+}
+
+button:disabled, select:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+/**************************/
+/* Merged in from Reviews */
+/**************************/
+
+h1 {
+  margin-top: 0;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: 50px;
+}
+
+p {
+  text-align: left;
+}
+
+.support {
+  display: block;
+  font-weight: 600;
+  font-size: 48px;
+  color: #58485f;
+  letter-spacing: -2.5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.start {
+  background: #63c4c0
+}
+
+.stop {
+  background: #c73970;
+}
+
+.button-wrapper {
+  width: 100px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+#typeOfInput {
+  margin-bottom: 10px;
+}
+
+#speechButton {
+  margin: 10px auto;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url(../img/mic.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#speechButton:hover {
+  cursor: pointer;
+}
+
+#transcript {
+  display: inline-block;
+  resize: none;
+  width: 85%;
+  height: 80px;
+  font-size: 16px;
+  overflow-y: scroll;
+  color: #333333;
+  border: 1px solid #d7d7d7;
+  line-height: 20.8px;
+  border-radius: 4px;
+  vertical-align: super;
+}
+
+#buttons {
+  text-align: right;
+}
+
+/* styles applied dynamically */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #d7d7d7;
+  margin: 16px 0;
+  padding: 0;
+}
+
+small {
+  font-weight: 600;
+  color: #58485f;
+  text-align: right;
+  display: block;
+}

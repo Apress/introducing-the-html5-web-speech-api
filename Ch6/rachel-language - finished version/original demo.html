@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Original SpeechKITT demo</title>
+</head>
+<body>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/speechkitt.min.js"></script>
+  <script>
+  if (annyang) {
+    // Add our commands to annyang
+    annyang.addCommands({
+      'hello': function() { alert('Hello world!'); }
+    });
+
+    // Tell KITT to use annyang
+    SpeechKITT.annyang();
+
+    // Define a stylesheet for KITT to use
+    SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/themes/flat.css');
+
+    // Render KITT's interface
+    SpeechKITT.vroom();
+  }
+  </script>
+</body>
+</html>
+

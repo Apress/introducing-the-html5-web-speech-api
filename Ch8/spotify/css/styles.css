@@ -1,0 +1,202 @@
+*, *:before, *:after { box-sizing: border-box; }
+
+body, html {
+  background-color: #fff;
+  height: 100%;
+  margin: 0 auto;
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 100%; 
+}
+
+h2 { 
+  margin-top: 0; 
+}
+
+.albumimage {
+  padding-right: 15px;
+  float: left;
+}
+
+.albumartist {
+  display: inline-block;
+  width: 300px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.albumname {
+  display: inline-block;
+  width: 300px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.year {
+  display: inline-block;
+  width: 40px;
+  font-weight: bold;
+  color: #9d9d9d;
+}
+
+.albumtype {
+  display: inline-block;
+  width: 300px;
+}
+
+.albumID {
+  display: none;
+}
+
+.artistID {
+  display: none;
+}
+
+.trackcount {
+  display: inline-block;
+  border-right: 1px solid #9d9d9d;
+  padding-right: 5px;
+  font-weight: bold;
+  color: #9d9d9d;
+}
+
+#app { 
+  width: 540px; 
+  background: #ffffff; 
+  padding: 16px; 
+  margin: 32px auto; 
+  border-top: 5px solid #9d9d9d; 
+  box-shadow: 0 1px 5px rgba(0,0,0,0.6); 
+}
+
+#info {
+  border: 1px solid #d1d1d1;
+  padding: 10px;
+  margin-top: 20px;
+  display: none;
+}
+
+#currentalbum {
+  height: 155px;
+  margin-top: 15px;
+}
+
+#currentalbum > span.albumimage > img {
+  width: 150px;
+  height: 150px;
+}
+
+#albumlist {
+  border-top: 1px solid #9d9d9d;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+#albumlist > ul {
+  list-style-type: none;
+}
+
+#otheralbums {
+  border-top: 1px solid #9d9d9d;
+  padding-top: 15px;
+  border-bottom: 1px solid #9d9d9d;
+  margin-bottom: 15px;
+}
+
+#otheralbums ul {
+  list-style-type: none;
+}
+
+#otheralbums ul li {
+  margin-left: -30px;
+  padding-bottom: 10px;
+  display: flex;
+}
+
+#otheralbums ul li span:nth-child(2) {
+  padding-left: 10px;
+  padding-top: 15px;
+}
+
+#otheralbums button {
+  margin-left: 10px;
+}
+
+#artistlisting {
+  border-bottom: 1px solid #9d9d9d;
+}
+
+#artistlisting > span {display: block;font-style: italic;}
+
+#artistlist ul li {
+  display: flex;
+}
+
+#artistlist > ul > li > span:nth-child(2) {
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+#artistlist > ul > li > span:nth-child(2):hover {
+  color: #ff0000;
+}
+
+#artistlist > ul > li > span > img {
+  width: 75px;
+  height: 75px;
+  margin-right: 10px;
+}
+
+button {
+  display: inline-block;
+  background: rgba(10, 20, 30, .3);
+  border: 1px solid transparent;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.5rem;
+  border-radius: 45px;
+  margin: .25rem 0;
+  vertical-align: middle;
+  line-height: 1;
+  overflow: visible;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  border: 1px solid rgba(255, 255, 255, .8);
+  color: #000000;
+}
+
+#artistlisting > button {
+  margin-left: 10px;
+}
+
+/* SPEECH */
+#speech {
+  border-bottom: 1px solid #9d9d9d;
+  padding-bottom: 15px;
+}
+
+.output_log {
+  font-family: monospace;
+  font-size: 24px;
+  color: #999;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.output {
+  height: 50px;
+  font-size: 19px;
+  color: #000000;
+  margin-top: 30px;
+}
+
+.response {
+  margin-top: 10px;
+  background-color: #f4f4f4;
+  padding: 5px;
+}
+

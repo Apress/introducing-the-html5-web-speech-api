@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+	<title>Gofer Good Food</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+  <body>
+    <div id="page-wrapper">
+      <header>
+        <h1>Gofer Good Food<span class="subtitle">"The home for finding great restaurants in Prague"</span></h1>
+
+        <a class="header" href="#"></a>
+      </header>
+      <section class="voicechoice">
+       <span class="voice">Bot's Voice:</span>
+        <select name="voice" id="voice"></select>
+        <span class="voice">Your voice: US English</span>
+      </section>
+
+      <section class="location">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3044.1041784389286!2d14.388970845734875!3d50.090475160315485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b951a6763122b%3A0x115b23509342f9e0!2sHotel%20Savoy!5e0!3m2!1sen!2suk!4v1573999596563!5m2!1sen!2suk" width="200" height="125" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+      </section>
+      <span class="geo">
+        <p><img src="img/location.svg">Your location:</p>
+        <p>Latitude: <span class="lat"></span></p>
+        <p>Longitude: <span class="lon"></span></p>
+      </span>
+
+      <button id="help">Start a search</button>
+      <section class="chat">
+        <div class="messages"></div>
+        <div id="edge"></div>
+
+        <div class="here">
+          <div class="card">
+            <div class="card-body">
+              <div id="results"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="speech">
+        <button>
+          <i class="fa fa-microphone"></i> Click and talk to me!
+        </button>
+        <p class="output">You last said: <strong class="output_result"></strong></p>
+      </section>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/rivescript@latest/dist/rivescript.min.js"></script>
+  	<script src="js/script.js"></script>
+  </body>
+</html>

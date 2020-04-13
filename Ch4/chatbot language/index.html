@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+	<title>PiShack: Search for Raspberry Pi Hardware</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+  <body>
+    <div id="page-wrapper">
+      <h1>PiShack: Search for Raspberry Pi Hardware</h1>
+      <a class="header" href="#"></a>
+      <section class="voicechoice">
+        Voice:
+        <select name="voice" id="voice"></select>
+      </section>
+      <section class="flags">
+        <span class="en-us"><img src="img/en-us.png" alt="en-us">EN</span>|
+        <span class="fr-fr"><img src="img/fr-fr.png" alt="fr-fr">FR</span>
+      </section>
+      <button id="help" disabled>Ask a question</button>
+      <section class="chat">
+        <div class="messages"></div>
+        <div id="edge"></div>
+        <form class="actions">
+          <input type="text" placeholder="press 'Enter' to send...">
+        </form>     
+      </section>
+    </div>
+    <script src="https://unpkg.com/rivescript@latest/dist/rivescript.min.js"></script>
+  	<script src="js/script.js"></script>
+  </body>
+</html>

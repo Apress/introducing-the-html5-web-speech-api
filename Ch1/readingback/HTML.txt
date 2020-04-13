@@ -1,0 +1,12 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+<div id="page-wrapper">
+  <h1>Introducing HTML5 Speech API: Reading Text back as Speech</h1>
+  <p id="msg"></p>
+  <input type="text" name="speech-msg" id="speech-msg">
+    <div class="option">
+      <label for="voice">Voice</label>
+      <select name="voice" id="voice"></select>
+      <button id="speak">Speak</button>
+    </div>
+</div>

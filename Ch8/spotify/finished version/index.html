@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+	<script src="js/spotify-web-api.js"></script>
+	<script src="js/vue.js"></script>
+  <script src="js/jquery.min.js"></script>
+</head>
+<body>
+	<main id="app">
+		<h2>Introducing HTML5 Speech API: <br>Controlling Spotify by Voice</h2>
+	  <template v-if="me">
+      <div id="speech">
+        <button>
+          <i class="fa fa-microphone"></i> Click and talk to me!
+        </button>
+
+        <p class="output">You said: <br><strong class="output_result"></strong></p>
+        <button id="micoff">Turn off</button>
+        <span class="voice">Spoken voice: US English</span>
+        <p>Responses:</p>
+        <div class="response">
+          <span class="output_log"></span>
+        </div>
+      </div>
+
+      <div id="currentalbum">
+        <span class="albumimage"><img src="img/100.png" /></span>
+        <span class="albumartist"></span>
+        <span class="albumname"></span>
+        <span class="trackcount"></span>
+        <span class="year"></span>        
+        <span class="albumtype"></span>
+        <span class="albumID"></span>
+        <span class="artistID"></span>
+      </div>
+
+      <button @click="playmusic"><i class="fa fa-microphone"></i> Play music</button>
+      <button @click="pausemusic"><i class="fa fa-microphone"></i> Pause music</button>
+      <button @click="playnexttrack"><i class="fa fa-microphone"></i> Go forward 1 track</button>
+      <button @click="playprevioustrack"><i class="fa fa-microphone"></i> Go back 1 track</button>
+      <button @click="addtosavedalbums"><i class="fa fa-microphone"></i> Add to saved albums</button>
+
+      <div id="albumlist">
+        <p>Track listing:</p>
+        <ul></ul>
+      </div>
+
+      <div id="otheralbums">
+        <span>Other albums by Artist:</span><button @click="getalbumsbyartist"><i class="fa fa-microphone"></i> Get Albums</button>
+        <ul></ul>
+      </div>
+
+      <div id="artistlisting">
+        Search for Artist: <input v-model="searchartist"><button @click="searchartistsbyname"><i class="fa fa-microphone"></i> Search</button>
+        <span>Chosen artist: {{searchartist}}</span>
+        <div id="artistlist"><ul></ul></div>
+      </div>
+
+	    <div id="info">{{ me }}</div>
+
+	  </template>
+	  <template v-else>
+	    <button @click="login">Login with Spotify</button>
+	  </template>
+	</main>
+
+  <script>
+    var spotifyApi, albumIDplaying, artistimage;
+
+    function msToMinAndSec(millis) {
+      var minutes = Math.floor(millis / 60000);
+      var seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+		const app = new Vue({
+	  el: '#app',
+	  data() {
+	    return {
+	      client_id: 'bf253330696448f696dc45889f3fd61c',
+	      scopes: 'user-top-read playlist-read-collaborative playlist-read-collaborative playlist-modify-public playlist-read-private playlist-modify-private streaming app-remote-control user-modify-playback-state user-read-currently-playing user-read-playback-state user-library-modify',
+	      redirect_uri: 'https://speech/spotify',
+	      me: null,
+        albumname: 'Not listed',
+        searchartist: null,
+        createplist: null
+	    }
+	  },
+	  methods: {
+	    login() {
+	      let popup = window.open(`https://accounts.spotify.com/authorize?client_id=${this.client_id}&response_type=token&redirect_uri=${this.redirect_uri}&scope=${this.scopes}&show_dialog=true`, 'Login with Spotify', 'width=600,height=800')
+	      
+	      window.spotifyCallback = (payload) => {
+	        popup.close()
+	        
+	        fetch('https://api.spotify.com/v1/me', {
+	          headers: {
+	            'Authorization': `Bearer ${payload}`
+	          }
+	        }).then(response => {
+	          return response.json()
+	        }).then(data => {
+	          this.me = data
+	        })
+  
+          spotifyApi = new SpotifyWebApi({
+            clientId: 'bf253330696448f696dc45889f3fd61c',
+            clientSecret: '46dfa2975eb14db5b3af4bde402a388f'
+          });
+          spotifyApi.setAccessToken(payload);
+	      }
+	    },
+      playmusic() {
+        // get current playing album
+		    spotifyApi.getMyCurrentPlaybackState()          
+        .then(function(data) {
+       	  spotifyApi.play(data);
+          sessionStorage.setItem("chosenalbum", data.item.album.id);
+          sessionStorage.setItem("chosenartist", data.item.artists[0].id);
+
+          var albumtype = data.item.album.album_type;
+
+          $(".year").html(data.item.album.release_date.substring(0,4));
+          $(".albumtype").html(albumtype.charAt(0).toUpperCase() + albumtype.slice(1));
+          $(".trackcount").html(data.item.album.total_tracks + " songs");
+          $(".albumID").html(data.item.album.id);
+          $(".artistID").html(data.item.artists[0].id);
+          $("#currentalbum > span.albumname").html(data.item.album.name);
+          $("#currentalbum > span.albumartist").html(data.item.artists[0].name);
+          $("#currentalbum > span.albumimage > img").attr("src", data.item.album.images[1].url);
+        }, function(err) {
+          console.error(err);
+        });
+
+        // get album tracks
+        albumIDplaying = sessionStorage.getItem("chosenalbum");
+        spotifyApi.getAlbumTracks(sessionStorage.getItem("chosenalbum"))
+        .then(function(data) {
+          var tracklength;
+
+          $("#albumlist > ul > li").remove();
+
+          data.items.map( function(item) {
+            spotifyApi.getAudioFeaturesForTrack(item.id)
+            .then(function(response) {
+              tracklength = response.duration_ms;
+              $("#albumlist > ul").append(`<li>${item.track_number}: ${item.name} - ${msToMinAndSec(tracklength)}</li>`);
+            });
+          });
+        }, function(err) {
+          console.error(err);
+        });
+      }, 
+      pausemusic() {
+        // stop music
+        spotifyApi.pause();
+      },
+      playnexttrack() {
+        // play next track
+        spotifyApi.skipToNext();
+      },
+      playprevioustrack() {
+        // play previous track
+        spotifyApi.skipToPrevious();
+      },      
+      searchartistsbyname() {
+        // search artists by name
+        var artistquery = $("#artistlisting > input").val();
+
+        spotifyApi.searchArtists(artistquery)
+          .then(function(data) {
+
+            data.artists.items.map( function(item) {
+              if (item.images.length == 0) {
+                artistimage = "https://speech/spotify/img/noimage.png";
+              } else {
+                artistimage = item.images[2].url
+              }
+
+              $("#artistlist > ul").append(`<li><span><img src="${artistimage}"></span><span>${item.name} - ${item.id}</span></li>`);
+              });
+          }, function(err) {
+            console.error(err);
+          });            
+      },
+      getalbumsbyartist() {
+        // get albums by a certain artist
+        var selectedartist = sessionStorage.getItem("chosenartist");
+
+        spotifyApi.getArtistAlbums(selectedartist)
+          .then(function(data) {
+            data.items.map( function(item) {
+              $("#otheralbums > ul").append(`<li><span><img src="${item.images[2].url}"></span><span>${item.name}</span></li>`);
+            });
+          }, function(err) {
+            console.error(err);
+          });  
+      },
+      addtosavedalbums() {
+        // add to saved albums 
+        var getalbum = $(".albumID").text();
+        spotifyApi.addToMySavedAlbums([getalbum]);
+      },
+	  },
+	  mounted() {
+	    this.token = window.location.hash.substr(1).split('&')[0].split("=")[1]
+	    
+	    if (this.token) {
+	      window.opener.spotifyCallback(this.token)
+	    }
+	  }
+	})
+	</script>
+
+  <script>
+    $(document).ready(function() {
+      $("body").on("click", "#artistlist ul li", function() {
+        var chosenartist = $(this).text();
+        var chosen = chosenartist.split(" ");
+        sessionStorage.setItem("chosenartist", chosen.pop());
+      });
+
+      const output = $(".output_result");
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.continuous = true;
+
+        $("body").on("click", "#speech > button", function() {
+          let recogLang = "en-US";
+          recognition.lang = recogLang.value;
+          recognition.start();
+        });
+
+        recognition.addEventListener("speechstart", () => {
+          $(".output_log").text("Speech has been detected.");
+        });
+
+        recognition.addEventListener("result", (e) => {
+          $(".output_log").html("Result has been detected.");
+
+          let last = e.results.length - 1;
+          let text = e.results[last][0].transcript;
+
+          $(".output_result").html(text);
+
+
+          /* Play music */
+          if (text.indexOf("play music") != -1) {
+            $("#app > button:nth-child(4)").trigger("click");
+          }
+
+          /* Pause music */
+          if (text.indexOf("pause music") != -1) {
+            $("#app > button:nth-child(5)").trigger("click");
+          }
+           
+          /* Go forward */
+          if (text.indexOf("go forward") != -1) {
+            $("#app > button:nth-child(7)").trigger("click");
+          }
+
+          /* Go back */
+          if (text.indexOf("go back") != -1) {
+            $("#app > button:nth-child(8)").trigger("click");
+          }
+
+          /* Save album */
+          if (text.indexOf("save album") != -1) {
+            $("#app > button:nth-child(9)").trigger("click");
+          }
+
+          /* Get other albums */
+          if (text.indexOf("get other albums") != -1) {
+            $("#otheralbums > button").trigger("click");
+          }
+
+          /* Search artist */
+          if (text.indexOf("search artist") != -1) {
+            $("#artistlist > input").val("enigma");
+            $("#artistlist > button").trigger("click");
+          }
+          
+          $(".output_log").html("Confidence: " + (e.results[0][0].confidence * 100).toFixed(2) + "%");
+        });
+
+        recognition.addEventListener("speechend", () => {
+          recognition.stop();
+        });
+
+        recognition.onspeechend = function() {
+          $(".output_log").html("You were quiet for a while so voice recognition turned itself off.");
+          //console.log("off");
+        };
+
+        recognition.addEventListener("error", e => {
+          if (e.error == "no-speech") {
+            $(".output_result").html("Error: no speech detected");  
+          } else {
+            $(".output_result").html("Error: " + e.error);  
+          }
+        });
+      }).catch(function(err){
+        console.log(err);
+      });
+    });
+  </script>
+
+</body>
+</html>

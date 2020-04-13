@@ -1,0 +1,7 @@
+function play() {
+  if ('speechSynthesis' in window) {
+    console.log("The API is installed");
+    var ssu = new SpeechSynthesisUtterance("hello world");
+    window.speechSynthesis.speak(ssu);
+  }
+}

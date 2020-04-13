@@ -1,0 +1,80 @@
+"use strict";
+
+const log = document.querySelector(".output_log");
+const output = document.querySelector(".output");
+const confidence = document.querySelector(".confidence em");
+
+// Simple function that checks existence of s in str
+var request = function(str, s) {
+  return str.indexOf(s) > -1;
+};
+
+video_file.onchange = function() {
+  var files = this.files;
+  var file = URL.createObjectURL(files[0]);
+  video_player.src = file;
+};
+
+navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+  const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  document.querySelector("button").addEventListener("click", () => {
+    let recoglang = "en-US";
+    recognition.lang = recoglang;
+    recognition.continuous = true;
+    recognition.start();
+  });
+
+  recognition.addEventListener("speechstart", e => {
+    log.textContent = "Speech has been detected.";
+  });
+
+  recognition.addEventListener("speechend", e => {
+    recognition.stop();
+  });
+
+  recognition.onspeechend = function() {
+    log.textContent =
+      "You were quiet for a while so voice recognition turned itself off.";
+    stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+    console.log("off");
+  };
+
+  // Process the results when they are returned from the recogniser
+  recognition.onresult = function(e) {
+    // Check each result starting from the last one
+    for (var i = e.resultIndex; i < e.results.length; ++i) {
+      var str = e.results[i][0].transcript;
+      console.log("Recognised: " + str);
+      // If the user said 'video' then parse it further
+      if (request(str, "video")) {
+        // Play the video
+        if (request(str, "play")) {
+          video_player.play();
+         log.innerHTML = "playing video...";
+        } else if (request(str, "pause")) {
+          // Stop the video
+          video_player.pause();
+          log.innerHTML = "video paused...";
+        }
+      }
+    }
+
+    confidence.textContent =
+      (e.results[0][0].confidence * 100).toFixed(2) + "%";
+  };
+
+  recognition.addEventListener("error", e => {
+    if (e.error == "no-speech") {
+      log.textContent = "Error: no speech detected";
+    } else {
+      log.textContent = "Error: " + e.error;
+    }
+  });
+}).catch(function(err) {
+  console.log(err);
+});

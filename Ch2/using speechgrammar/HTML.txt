@@ -1,0 +1,15 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">  
+
+<div id="page-wrapper">
+  <h2>Introducing HTML5 Speech API: Recognizing Colors</h2>
+  
+  <div class="selected">Selected Color:<p></p></div>
+  
+   <p class="hints"></p>
+   <div>
+      <p class="output"><em>...diagnostic messages</em></p>
+   </div>
+   <div>
+      <p class="confidence">Confidence: <em>--</em></p>
+   </div> 
+</div> 

@@ -1,0 +1,84 @@
+"use strict";
+
+var supportMsg = document.getElementById('msg');
+
+var speechSynthesis = window.SpeechSynthesis || window.webkitSpeechSynthesis;
+
+if ('speechSynthesis' in window) {
+  supportMsg.innerHTML = '<span class="ok">&#x2611;</span> Your browser <strong>supports</strong> speech synthesis.';
+} else {
+  supportMsg.innerHTML = '<span class="notok">&#x2612;</span> Sorry your browser <strong>does not support</strong> speech synthesis.';
+  supportMsg.classList.add('not-supported');
+}
+
+var speechMsgInput = document.getElementById('speech-msg');
+var voiceSelect = document.getElementById('voice');
+var button = document.getElementById('speak');
+var pause = document.getElementById('pause');
+var resume = document.getElementById('resume');
+
+// Get the attribute controls.
+var volumeInput = document.getElementById('volume');
+var rateInput = document.getElementById('rate');
+var pitchInput = document.getElementById('pitch');
+
+function loadVoices() {
+  var voices = speechSynthesis.getVoices();
+  
+  voices.forEach(function(voice, i) {
+    var option = document.createElement('option');
+    option.value = voice.name;
+    option.innerHTML = voice.name;
+    voiceSelect.appendChild(option);
+  });
+}
+
+loadVoices();
+
+// Chrome loads voices asynchronously.
+speechSynthesis.onvoiceschanged = function(e) {
+  loadVoices();
+};
+
+speechSynthesis.onerror = function(event) {
+  console.log('Speech recognition error detected: ' + event.error);
+  console.log('Additional information: ' + event.message);
+};
+
+function speak(text) {
+  var msg = new window.SpeechSynthesisUtterance();
+  msg.text = text;
+  
+  // Set the attributes.
+  msg.volume = parseFloat(volumeInput.value);
+  msg.rate = parseFloat(rateInput.value);
+  msg.pitch = parseFloat(pitchInput.value);  
+  
+  if (voiceSelect.value) {
+    msg.voice = speechSynthesis.getVoices().filter(function(voice) { 
+      return voice.name == voiceSelect.value; 
+    })[0];
+  }
+  
+  speechSynthesis.speak(msg);
+}
+
+// Set up an event listener for when the 'pause' button is clicked.
+pause.addEventListener('click', function(e) {
+  if (speechMsgInput.value.length > 0 && speechSynthesis.speaking) {
+    speechSynthesis.pause();
+  }
+});
+
+// Set up an event listener for when the 'resume' button is clicked.
+resume.addEventListener('click', function(e) {
+  if (speechSynthesis.paused) {
+    speechSynthesis.resume();
+  }
+});
+
+button.addEventListener('click', function(e) {
+  if (speechMsgInput.value.length > 0) {
+    speak(speechMsgInput.value);
+  }
+});

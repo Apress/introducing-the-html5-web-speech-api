@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pi Shack - The home of Raspberry Pi Products | Buy Now!</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+  <div id="container">
+    <header>
+      <div>
+        <span>Pi Shack</span>
+        <img src="img/logo.svg" />
+        <p>The Home of Pi Raspberry Products</p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/">PiShack</a></li>
+        <li><a href="#">Raspberry Pi</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Help and Support</a></li>
+      </ul>        
+    </nav>
+
+    <section id="content">
+      <div id="hero">   
+        <img src="img/raspberrypi.jpg">
+      </div>
+      <div id="description">
+        <h2>Raspberry Pi 4 - 2GB RAM</h2>
+        <img src="img/reviews.png" />
+        <p>The ultimate Raspberry Pi has arrived! Raspberry Pi 4 comes with 1GB, 2Gb or 4GB RAM, a faster quad-core CPU, support for dual displays at up to 4K resolution, Gigabit Ethernet, USB3.0, wireless LAN and more. That's real desktop PC performance!</p>
+        <span class="stock">In stock</span>
+        <span class="stockid">PSH-047</span>
+        <div class="price">£47.10</div>
+        <p class="vat">All prices include VAT @ 20%</p>
+        <ul>
+          <li>In stock and ready to ship!</li>
+          <li>30-day money-back guarantee</li>
+          <li>Compatible with Raspberry Pi</li>
+          <li>Worldwide shipping</li>
+        </ul>
+        <label for="qty">Quantity: </label>
+        <input id="qty" type="number" value="0" />
+        <button id="addtocart">ADD TO CART</button>
+      </div>
+      <div id="main">
+        <!-- Tab links -->
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'descriptionTab')" id="defaultOpen">Description</button>
+          <button class="tablinks" onclick="openCity(event, 'reviewsTab')">Reviews</button>
+          <button class="tablinks" onclick="openCity(event, 'extrasTab')">Extras</button>
+        </div>
+
+        <!-- Tab content -->
+        <div id="descriptionTab" class="tabcontent">
+          <h3>Cras eu tempor neque. Donec ac nibh purus. Ut in odio vel urna congue bibendum. Proin mauris mi, ornare a congue et, laoreet eget arcu!</h3>
+
+          <p>Cras eu tempor neque. Donec ac nibh purus. Ut in odio vel urna congue bibendum. Proin mauris mi, ornare a congue et, laoreet eget arcu.</p>
+
+          <h3>Features</h3>
+          <ul>
+            <li>Ut condimentum mauris eu leo aliquet, at viverra justo malesuada.</li>
+            <li>Nulla placerat magna ac auctor sollicitudin.</li>
+            <li>Praesent vehicula leo posuere, condimentum tortor sed, sollicitudin nisl.</li>
+            <li>Pellentesque lobortis est at ante congue, vel condimentum magna viverra.</li>
+            <li>Morbi aliquam leo et lectus tempor dictum.</li>
+            <li>Nullam sed lorem id tortor faucibus tempor ut a ante.</li>
+          </ul>
+
+          <!-- description -->
+          <p>Cras eu tempor neque. Donec ac nibh purus. Ut in odio vel urna congue bibendum. Proin mauris mi, ornare a congue et, laoreet eget arcu. Phasellus ut lorem arcu. Quisque eu efficitur mauris. Donec accumsan porta fermentum. Cras rhoncus turpis varius enim molestie ullamcorper. 
+          </p>
+
+          <h3>Desktop-level performance</h3>
+          <p>Cras eu tempor neque. Donec ac nibh purus. Ut in odio vel urna congue bibendum. Proin mauris mi, ornare a congue et, laoreet eget arcu. Phasellus ut lorem arcu. Quisque eu efficitur mauris. Donec accumsan porta fermentum. Cras rhoncus turpis varius enim molestie ullamcorper.</p>
+
+          <P>TCras eu tempor neque. Donec ac nibh purus. Ut in odio vel urna congue bibendum. Proin mauris mi, ornare a congue et, laoreet eget arcu!</P>      
+        </div>
+
+        <div id="reviewsTab" class="tabcontent">
+          <!-- reviews -->
+          <h1>Product Reviews</h1>
+          <div id="reviews"></div>
+          <div id="unsupported" class="support hidden">Speech API Not Supported</div>
+          <h3>Add Your Review:</h3>
+          <div id="typeOfInput"><span>Results:</span>
+            <input type=radio name=recognition-type value=final id="final">
+            <label for id="final">Final speech</label>
+            <input type=radio name=recognition-type value=interim checked id="interim"></label>
+            <label for id="interim">As you speak</label>
+          </div>
+          <textarea id="transcript" readonly></textarea>
+          <div class="button-wrapper">
+            <div id="speechButton" class="start"></div>
+          </div>
+          <div id="buttons">
+            <button id="clearall-btn">Clear Text</button>
+            <button id="submit-btn">Submit Review</button>
+          </div>
+          <div id="log">Click the microphone to start speaking</div>
+        </div>
+        <div id="extrasTab" class="tabcontent">
+          <!-- extras -->
+          <h1>Extras</h1>
+          <p>Extras for this product are being revamped - watch this space for updates!</p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; Pi Shack 2019 | All Rights reserved.
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.16/dayjs.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>

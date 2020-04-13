@@ -1,0 +1,40 @@
+! version = 2.0
+
+> object keepname javascript
+  var newName
+  for (var i = 0; i < args.length; i++) {
+    newName = args[i]
+  }
+
+  return newName.charAt(0).toUpperCase() + newName.slice(1)
+< object 
+
++ hello
+- hello, what is your name?
+
++ hi my name is * im looking for a raspberry pi 4
+- <set name=<star>>Nice to meet you, <call>keepname <star></call>. No problem, I have 3 available. Are you looking for a particular version?
+- <set name=<star>>Nice meeting you, <call>keepname <star></call>. No problem, I have 3 available. Are you looking for a particular version?
+
++ * versions do you have available
+- I have ones that come with 1 gigabyte 2 gigabyte or 4 gigabyte RAM. Which would you prefer?
+
++ i would prefer the (1|2|4) gigabyte version
+- <set piversion=<star>>Excellent, here is a picture: <img src="img/<star>.webp">
+
++ is this one in stock
+- Yes it is: we have more than 10 available for immediate despatch
+
++ how can i get it
+- No problem, here is a link directly to the product page for the 4 gigabyte version of the Raspberry Pi <get piversion>: 
+^ <span class="productname"><p><h2>Raspberry Pi 4 - <get piversion>GB RAM</h2><img src="img/<get piversion>.webp"></p><p class="stock">More than 10 in stock</p><p class="stockid">PSH047</p><a class="productlink" href="rasp<get piversion>.html">Go to product page</a></span>
+^ Just click on Add to Cart when you get there, to add it to your basket. Is there anything else I can help with today?
+
++ no thats fine thankyou
+- You're welcome, thankyou for choosing to use PiShack's Raspberry Pi Selector tool today
+
++ *
+- Sorry, I did not get what you said
+- I am afraid that I do not understand you
+- I did not get it
+- Sorry, can you please elaborate that for me?

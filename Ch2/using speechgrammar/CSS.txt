@@ -1,0 +1,50 @@
+*, *:before, *:after { box-sizing: border-box; }
+
+html { 
+  font-family: 'Open Sans', sans-serif; 
+  font-size: 100%; 
+}
+
+#page-wrapper { 
+  width: 640px; 
+  background: #ffffff; 
+  padding: 16px; 
+  margin: 32px auto; 
+  border-top: 5px solid #9d9d9d; 
+  box-shadow: 0 1px 5px rgba(0,0,0,0.6); 
+}
+
+h2 { 
+  margin-top: 0; 
+}
+
+.selected p {
+  display: inline-block;
+  padding: 5px;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 15px;
+}
+
+span {
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+}
+
+p.confidence {
+  width: 150px;
+}
+
+p.confidence em {
+  font-size: 24px;
+  
+}
+
+p.output {
+  width: 450px;
+}
+
+#page-wrapper > div {
+  display: inline-block;
+}
